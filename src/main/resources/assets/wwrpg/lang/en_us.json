@@ -1,0 +1,34 @@
+{
+  "wwrpg.gameType.werewolf": "Werewolf Game",
+
+  "wwrpg.role.villager": "Villager",
+  "wwrpg.role.werewolf": "Werewolf",
+  "wwrpg.role.vampire": "Vampire",
+  "wwrpg.role.madman": "Madman",
+  "wwrpg.role.immoral": "Immoral",
+  "wwrpg.role.haunted": "Haunted",
+  "wwrpg.role.spectator": "Spectator",
+
+  "wwrpg.team.villagers": "Villagers",
+  "wwrpg.team.werewolves": "Werewolves",
+  "wwrpg.team.vampires": "Vampires",
+
+  "wwrpg.game.start": "START",
+  "wwrpg.game.yourRole": "You are the %s.",
+  "wwrpg.game.win": "Team %s win!",
+  "wwrpg.game.aborted": "Game aborted.",
+  "wwrpg.game.abortionFailure": "Game is not running.",
+
+  "wwrpg.gui.save": "Save",
+  "wwrpg.gui.start": "Start",
+  "wwrpg.gui.preferences": "Personal Settings",
+  "wwrpg.gui.settings": "Game Settings",
+  "wwrpg.gui.enabled": "Enabled",
+  "wwrpg.gui.disabled": "Disabled",
+  "wwrpg.gui.roles": "Roles",
+  "wwrpg.gui.spawnPos": "Start Position",
+  "wwrpg.gui.dayTime": "Day Time (ticks)",
+  "wwrpg.gui.nightTime": "Night Time (ticks)",
+  "wwrpg.gui.invalidInputFormat": "Some input formats are invalid.",
+  "wwrpg.gui.invalidSettings": "These settings cannot be applied."
+}

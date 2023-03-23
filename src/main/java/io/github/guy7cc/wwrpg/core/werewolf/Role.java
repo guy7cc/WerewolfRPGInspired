@@ -5,22 +5,35 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 
 public enum Role {
-    VILLAGER(Team.VILLAGERS, InvestigationResult.VILLAGER, Component.translatable("wwrpg.role.villager").withStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))),
-    WEREWOLF(Team.WEREWOLVES, InvestigationResult.WEREWOLF, Component.translatable("wwrpg.role.werewolf").withStyle(Style.EMPTY.withColor(ChatFormatting.RED))),
-    VAMPIRE(Team.VAMPIRES, InvestigationResult.VAMPIRE, Component.translatable("wwrpg.role.vampire").withStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE))),
-    MADMAN(Team.WEREWOLVES, InvestigationResult.VILLAGER, Component.translatable("wwrpg.role.madman").withStyle(Style.EMPTY.withColor(ChatFormatting.RED))),
-    IMMORALIST(Team.VAMPIRES, InvestigationResult.VILLAGER, Component.translatable("wwrpg.role.immoralist").withStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE))),
-    HAUNTED(Team.VILLAGERS, InvestigationResult.WEREWOLF, Component.translatable("wwrpg.role.haunted").withStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))),
-    SPECTATOR(null, null, Component.translatable("wwrpg.role.spectator"));
+    VILLAGER("villager", Team.VILLAGERS, InvestigationResult.VILLAGER),
+    WEREWOLF("werewolf", Team.WEREWOLVES, InvestigationResult.WEREWOLF),
+    VAMPIRE("vampire", Team.VAMPIRES, InvestigationResult.VAMPIRE),
+    MADMAN("madman", Team.WEREWOLVES, InvestigationResult.VILLAGER),
+    IMMORAL("immoral", Team.VAMPIRES, InvestigationResult.VILLAGER),
+    HAUNTED("haunted", "villager", Team.VILLAGERS, InvestigationResult.WEREWOLF),
+    SPECTATOR("spectator", Team.DUMMY, InvestigationResult.VILLAGER);
 
+    public final String realName;
+    public final String displayName;
     public final Team team;
     public final InvestigationResult investigationResult;
-    public final Component text;
 
-    Role(Team team, InvestigationResult investigationResult, Component text){
-        this.team = team;
-        this.investigationResult = investigationResult;
-        this.text = text;
+    Role(String name, Team team, InvestigationResult investigationResult){
+        this(name, name, team, investigationResult);
     }
 
+    Role(String realName, String displayName, Team team, InvestigationResult investigationResult){
+        this.realName = realName;
+        this.displayName = displayName;
+        this.team = team;
+        this.investigationResult = investigationResult;
+    }
+
+    public Component getRealNameComponent(){
+        return Component.translatable("wwrpg.role." + realName).withStyle(team.style);
+    }
+
+    public Component getDisplayNameComponent(){
+        return Component.translatable("wwrpg.role." + displayName).withStyle(team.style);
+    }
 }

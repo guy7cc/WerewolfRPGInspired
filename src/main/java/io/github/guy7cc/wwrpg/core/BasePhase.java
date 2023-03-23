@@ -1,7 +1,5 @@
 package io.github.guy7cc.wwrpg.core;
 
-import java.util.Queue;
-
 public abstract class BasePhase {
     protected BaseGame game;
     private int phaseTick = 0;
@@ -17,5 +15,10 @@ public abstract class BasePhase {
 
     public int getPhaseTick(){
         return phaseTick;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "{tick=" + phaseTick + '}';
     }
 }

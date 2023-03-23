@@ -13,7 +13,7 @@ public class Judgement {
         this.winner = winner;
     }
 
-    public static Judgement judge(Collection<RoleGetter> roles){
+    public static Judgement judge(Collection<? extends RoleGetter> roles){
         Map<Team, Integer> teamMap = getTeamNums(roles);
         Map<Role, Integer> roleMap = getRoleNums(roles);
         boolean villagers = teamMap.get(Team.VILLAGERS) > 0;
@@ -38,7 +38,7 @@ public class Judgement {
         return winner;
     }
 
-    private static Map<Team, Integer> getTeamNums(Collection<RoleGetter> roles){
+    private static Map<Team, Integer> getTeamNums(Collection<? extends RoleGetter> roles){
         Map<Team, Integer> map = new HashMap<>();
         Team[] teams = new Team[]{ Team.VILLAGERS, Team.WEREWOLVES, Team.WEREWOLVES };
         for(int i = 0; i < 3; i++){
@@ -48,7 +48,7 @@ public class Judgement {
         return map;
     }
 
-    private static Map<Role, Integer> getRoleNums(Collection<RoleGetter> roles){
+    private static Map<Role, Integer> getRoleNums(Collection<? extends RoleGetter> roles){
         Map<Role, Integer> map = new HashMap<>();
         for(int i = 0; i < Role.values().length; i++){
             int j = i;

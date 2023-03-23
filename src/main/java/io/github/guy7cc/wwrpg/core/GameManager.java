@@ -2,10 +2,12 @@ package io.github.guy7cc.wwrpg.core;
 
 import net.minecraftforge.common.MinecraftForge;
 
-public class GameManager {
-    private BaseGame game;
+import java.util.function.Consumer;
 
-    public void tick(){
+public class GameManager {
+    private static BaseGame game;
+
+    public static void serverTick(){
         if(game != null) {
             game.tick();
             if(game.finished()){
@@ -15,10 +17,21 @@ public class GameManager {
         }
     }
 
-    public void startGame(BaseGame game){
-        if(this.game != null) MinecraftForge.EVENT_BUS.unregister(this.game);
-        this.game = game;
-        MinecraftForge.EVENT_BUS.register(this.game);
+    public static void startGame(BaseGame game){
+        if(GameManager.game != null) MinecraftForge.EVENT_BUS.unregister(GameManager.game);
+        GameManager.game = game;
+        MinecraftForge.EVENT_BUS.register(GameManager.game);
     }
 
+    public static <T extends BaseGame> boolean apply(Class<T> type, Consumer<T> consumer){
+        if(game != null && game.getClass() == type) {
+            consumer.accept((T) game);
+            return true;
+        }
+        return false;
+    }
+
+    public static String getGameAsString(){
+        return game != null ? game.toString() : "NoGame";
+    }
 }

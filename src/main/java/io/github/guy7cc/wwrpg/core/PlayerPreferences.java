@@ -1,18 +1,19 @@
-package io.github.guy7cc.wwrpg.core.werewolf;
+package io.github.guy7cc.wwrpg.core;
 
 import io.github.guy7cc.wwrpg.WerewolfRPGInspired;
+import io.github.guy7cc.wwrpg.core.werewolf.Role;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public class WerewolfGamePreferences implements INBTSerializable<CompoundTag> {
+public class PlayerPreferences implements INBTSerializable<CompoundTag> {
     private boolean enabled;
     private Role desiredRole;
 
-    public WerewolfGamePreferences(){
+    public PlayerPreferences(){
         this(false, Role.VILLAGER);
     }
 
-    public WerewolfGamePreferences(boolean enabled, Role desiredRole){
+    public PlayerPreferences(boolean enabled, Role desiredRole){
         this.enabled = enabled;
         this.desiredRole = desiredRole;
     }
@@ -25,7 +26,7 @@ public class WerewolfGamePreferences implements INBTSerializable<CompoundTag> {
         return desiredRole;
     }
 
-    public void copy(WerewolfGamePreferences preferences){
+    public void copy(PlayerPreferences preferences){
         enabled = preferences.enabled;
         desiredRole = preferences.desiredRole;
     }

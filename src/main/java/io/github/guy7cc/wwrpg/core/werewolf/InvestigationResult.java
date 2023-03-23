@@ -6,13 +6,20 @@ import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 
 public enum InvestigationResult {
-    VILLAGER(Component.translatable("wwrpg.role.villager").withStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))),
-    WEREWOLF(Component.translatable("wwrpg.role.werewolf").withStyle(Style.EMPTY.withColor(ChatFormatting.RED))),
-    VAMPIRE(Component.translatable("wwrpg.role.vampire").withStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)));
+    VILLAGER("villager", Team.VILLAGERS.style),
+    WEREWOLF("werewolf", Team.WEREWOLVES.style),
+    VAMPIRE("vampire", Team.VAMPIRES.style);
 
-    public final Component text;
+    public final String name;
+    public final Style style;
 
-    InvestigationResult(Component text){
-        this.text = text;
+
+    InvestigationResult(String name, Style style){
+        this.name = name;
+        this.style = style;
+    }
+
+    public Component getComponent(){
+        return Component.translatable("wwrpg.role." + name).withStyle(style);
     }
 }
